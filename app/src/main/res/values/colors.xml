@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="concert_green">#0FA958</color>
+    <color name="concert_dark_green">#04391F</color>
+    <color name="concert_card_bg">#114227</color>
+    <color name="concert_red">#D32F2F</color>
+    <color name="concert_gray">#2C2C2C</color>
+</resources>
