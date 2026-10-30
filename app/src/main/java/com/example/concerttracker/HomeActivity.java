@@ -2,6 +2,7 @@ package com.example.concerttracker;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,13 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerViewConcerts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ImageButton btnFilter = findViewById(R.id.btnFilter);
         btnFilter.setOnClickListener(v -> showFilterDialog());
+
 
         Button btnNavSetlist = findViewById(R.id.btnNavSetlist);
         btnNavSetlist.setOnClickListener(v -> {
