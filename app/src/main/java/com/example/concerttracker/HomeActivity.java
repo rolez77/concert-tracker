@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,6 +27,23 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ConcertAdapter adapter;
     private List<ConcertModel> concertList;
+
+    // Opens AddConcertActivity and adds the saved concert to the top of the list
+    private final ActivityResultLauncher<Intent> addConcertLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                Intent data = result.getData();
+                if (result.getResultCode() == RESULT_OK && data != null) {
+                    ConcertModel concert = new ConcertModel(
+                            data.getStringExtra(AddConcertActivity.EXTRA_ARTIST),
+                            data.getStringExtra(AddConcertActivity.EXTRA_DATE),
+                            data.getStringExtra(AddConcertActivity.EXTRA_VENUE),
+                            android.R.drawable.ic_menu_camera,
+                            data.getStringExtra(AddConcertActivity.EXTRA_IMAGE_URI));
+                    concertList.add(0, concert);
+                    adapter.notifyItemInserted(0);
+                    recyclerView.scrollToPosition(0);
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +77,13 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         Button btnLogifyIt = findViewById(R.id.btnLogifyIt);
-        btnLogifyIt.setOnClickListener(v -> {
-            Toast.makeText(this, "Logify It! Clicked", Toast.LENGTH_SHORT).show();
+        btnLogifyIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, AddConcertActivity.class);
+                // Use the launcher (not startActivity) so the saved concert comes back here
+                addConcertLauncher.launch(intent);
+            }
         });
 
         ImageButton btnFilter = findViewById(R.id.btnFilter);

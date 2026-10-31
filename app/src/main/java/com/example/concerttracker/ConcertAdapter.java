@@ -1,5 +1,6 @@
 package com.example.concerttracker;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,11 @@ public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertV
         holder.tvArtist.setText("Artist: " + concert.getArtist());
         holder.tvDate.setText("Date: " + concert.getDate());
         holder.tvVenue.setText(concert.getVenue());
-        holder.ivArtist.setImageResource(concert.getImageResId());
+        if (concert.getImageUri() != null) {
+            holder.ivArtist.setImageURI(Uri.parse(concert.getImageUri()));
+        } else {
+            holder.ivArtist.setImageResource(concert.getImageResId());
+        }
 
         // Toggle action buttons visibility on options click
         holder.btnOptions.setOnClickListener(v -> {

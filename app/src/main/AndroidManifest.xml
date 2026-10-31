@@ -38,6 +38,11 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".AddConcertActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
 
