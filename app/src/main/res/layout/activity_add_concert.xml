@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,7 +8,6 @@
     android:layout_height="match_parent"
     android:background="@color/concert_dark_green"
     tools:context=".AddConcertActivity">
-
     <!-- Top Bar with Back Button and Title -->
     <LinearLayout
         android:id="@+id/layoutTopBar"
@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="48dp"
@@ -28,7 +27,6 @@
             android:src="@android:drawable/ic_menu_revert"
             app:tint="@color/white"
             android:contentDescription="Back" />
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,10 +35,11 @@
             android:text="Add Concert"
             android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:id="@+id/tvConcertFormTitle" />
     </LinearLayout>
-
     <ScrollView
+        android:id="@+id/scrollConcertForm"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -48,7 +47,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,13 +54,11 @@
             app:cardBackgroundColor="@color/concert_card_bg"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp">
-
                 <!-- Picture -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,7 +67,6 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp" />
-
                 <ImageView
                     android:id="@+id/ivConcertImage"
                     android:layout_width="match_parent"
@@ -84,7 +79,6 @@
                     android:focusable="true"
                     android:contentDescription="Concert picture"
                     android:layout_marginBottom="8dp" />
-
                 <Button
                     android:id="@+id/btnAddPicture"
                     android:layout_width="match_parent"
@@ -94,7 +88,14 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
-
+                <Button
+                    android:id="@+id/btnRemovePicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/concert_green"
+                    android:text="Remove Picture"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="16dp" />
                 <!-- Artist -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,7 +104,6 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp" />
-
                 <EditText
                     android:id="@+id/etArtist"
                     android:layout_width="match_parent"
@@ -114,8 +114,25 @@
                     android:paddingHorizontal="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/concert_gray"
+                    android:layout_marginBottom="16dp"
+                    android:maxLength="150"
+                    android:singleLine="true" />
+                <Button
+                    android:id="@+id/btnSpotifySearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/concert_green"
+                    android:text="Search Spotify"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="4dp" />
+                <TextView
+                    android:id="@+id/tvSpotifySelection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Optional: find an artist and their picture on Spotify."
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
                     android:layout_marginBottom="16dp" />
-
                 <!-- Date Attended (tap to open a DatePickerDialog) -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,7 +141,6 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp" />
-
                 <EditText
                     android:id="@+id/etDate"
                     android:layout_width="match_parent"
@@ -140,7 +156,6 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/concert_gray"
                     android:layout_marginBottom="16dp" />
-
                 <!-- Stadium / Venue -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,7 +164,6 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp" />
-
                 <EditText
                     android:id="@+id/etVenue"
                     android:layout_width="match_parent"
@@ -160,8 +174,9 @@
                     android:paddingHorizontal="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/concert_gray"
-                    android:layout_marginBottom="24dp" />
-
+                    android:layout_marginBottom="24dp"
+                    android:maxLength="200"
+                    android:singleLine="true" />
                 <!-- Save -->
                 <Button
                     android:id="@+id/btnSaveConcert"
@@ -171,9 +186,7 @@
                     android:text="Save Concert"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
