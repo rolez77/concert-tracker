@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Never commit service credentials or Python caches
+.env
+.env.*
+__pycache__/
+*.pyc
